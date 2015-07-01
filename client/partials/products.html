@@ -1,0 +1,46 @@
+<style>
+	.productMain {
+		padding: 50px 100px;
+		overflow: scroll;
+	}
+
+	img {
+		width: 130px;
+		height: 130px;
+	}
+
+	.productBox {
+		text-align: center;
+		display: inline-block;
+		margin: 10px;
+		margin-right: 20px;
+	}
+
+</style>
+
+<div class="row" ng-controller="ProductsController as PC">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<p>Search:</p>
+		<input type="text">
+		<h3>Add a new product</h3>
+		<p>Name:</p>
+		<input type="text" ng-model="PC.new_product.name">
+		<p>Image(url):</p>
+		<!-- value not working -->
+		<input type="text" ng-model="PC.new_product.url" value="http://">
+		<p>Description</p>
+		<textarea ng-model="PC.new_product.description" cols="30" rows="5"></textarea>
+		<p>Initial Quantity:</p>
+		<input type="text" ng-model="PC.new_product.quantity">
+		<p></p>
+		<input type="submit" ng-click="PC.addproduct()" value="Add Order">
+	</div>
+	<div class="col-md-8 productMain">
+		<div class="productBox" ng-repeat="product in PC.products">
+			<img src="{{product.url}}" alt="">
+			<p ng-bind="product.name"></p>
+			<p>(<span ng-bind="product.quantity"></span> left)</p>
+		</div>
+	</div>
+</div>

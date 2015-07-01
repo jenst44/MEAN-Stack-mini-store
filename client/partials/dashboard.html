@@ -1,0 +1,55 @@
+<style>
+	.productMain {
+		padding:50px 100px;
+	}
+
+	img {
+		width: 130px;
+		height: 130px;
+	}
+
+	.productBox {
+		text-align: center;
+		display: inline-block;
+		margin: 10px;
+		margin-right: 20px;
+	}
+
+	.showMore {
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	.rowSpacer {
+		margin-top: 20px;
+	}
+
+</style>
+
+
+
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-6 productMain">
+		<div class="row rowSpacer" ng-controller="ProductsController as PC">
+			<div class="productBox" ng-repeat="product in PC.products | limitTo:6 | filter: product: product.created_at">
+				<img src="{{product.url}}" alt="">
+				<p ng-bind="product.name"></p>
+				<p>(<span ng-bind="product.quantity"></span> left)</p>
+			</div>
+			<p class="showMore" ><a href="#/products">Show More Products</a></p>
+		</div>
+		<div class="row rowSpacer" ng-controller="OrdersController as OC">
+			<div ng-repeat="order in OC.orders | limitTo:3">
+				<p><span ng-bind="order.name"></span> purchased <span ng-bind="order.amount"></span> <span ng-bind="order.item"></span>s (<span am-time-ago="order.created_at"></span>)</p>
+			</div>
+			<p class="showMore"><a href="#/orders">Show More Orders</a></p>
+		</div>
+		<div class="row rowSpacer" ng-controller="CustomersController as CC">
+			<div ng-repeat="customer in CC.customers | limitTo:3">
+				<p><span ng-bind="customer.name"></span> joined the store (<span am-time-ago="customer.created_at"></span>)</p>
+			</div>
+			<p class="showMore"><a href="#/customers">Show More Customers</a></p>
+		</div>
+	</div>
+</div>

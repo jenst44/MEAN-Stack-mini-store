@@ -1,0 +1,11 @@
+{
+	"name": "FullMean_Friends",
+	"version": "0.0.1",
+	"dependencies": {
+		"express": "latest",
+		"mongoose": "latest",
+		"body-parser": "latest",
+		"moment": "latest",
+		"angular-moment": "latest"
+	}
+}

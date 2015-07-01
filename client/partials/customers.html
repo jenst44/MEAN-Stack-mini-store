@@ -1,0 +1,43 @@
+<style>
+	.error {
+		color:red;
+	}
+	
+
+</style>
+
+<div ng-controller="CustomersController as CC">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-5">
+			<h1>Add a new customer</h1>
+			<p>Customer Name:</p>
+			<input type="text" ng-model="CC.new_customer.name">
+			<input type="submit" ng-click="CC.addcustomer()">
+			<p>Filter Customers</p>
+			<input type="text" ng-model="filter_customer">
+			<p class="error" ng-bind="CC.error"></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-6">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<td>Customer Name</td>
+						<td>Created Date</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="customer in CC.customers | filter: filter_customer">
+						<td ng-bind="customer.name"></td>
+						<td ng-bind="customer.created_at | date"></td>
+						<td><button ng-click="CC.removecustomer(customer._id)">Delete</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
